@@ -1,15 +1,17 @@
 import React,{useState} from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { BiSolidDashboard } from "react-icons/bi";
 import { IoMdSettings } from "react-icons/io";
 import { AiOutlineCheckCircle, AiOutlineStop, AiOutlineTransaction, AiTwotoneShop } from "react-icons/ai";
+import User from '../assets/user.png'
 
 const Dashboard = () => {
+    var navigate  = useNavigate();
     const menus = [
-        { name: 'Tableau de Bord', link: '/', icon: BiSolidDashboard },
+        { name: 'Tableau de Bord', link: '/Dashboard', icon: BiSolidDashboard },
         { name: 'Configuration', link: '/', icon: IoMdSettings },
-        { name: 'Agences', link: '/', icon: AiTwotoneShop, margin:true},
+        { name: 'Agences', link: '/Dashboard', icon: AiTwotoneShop, margin:true},
         { name: 'Transactions', link: '/', icon: AiOutlineTransaction },
         { name: 'Sanctions', link: '/', icon: AiOutlineStop , margin:true},
         { name: 'validation', link: '/', icon: AiOutlineCheckCircle }
@@ -20,13 +22,17 @@ const Dashboard = () => {
         <section className='flex gap-6'>
             <div className={`bg-[#0e0e0e] min-h-screen ${
                 open ? 'w-72' : 'w-16'
-            } duration-700 text-gray-100 px-4`}>
+            } duration-700 text-gray-100`}>
 
-                <div className='py-3 flex justify-end'>
-                    <HiMenuAlt3 size={26} className='cursor-pointer'
-                                onClick={() => setOpen(!open)} />
+                <div className='bg-gray-900 flex '>
+                    <div className='justify-center items-center pr-5 pl-10 py-8'>
+                        <link />
+                        <img src={User} className='cursor-pointer w-20 ml-8'/>
+                        <p className='font-medium items-center ml-12 pt-2'>Admin</p>
+                    </div>
+                    <HiMenuAlt3 size={26} className='ml-8 justify-end items-end'/>
                 </div>
-                <div className='mt-4 flex flex-col gap-4 relative'>
+                <div className='mt-4 px-4 pt-5 flex flex-col gap-4 relative'>
                     {menus?.map((menu, i) => (
                         <Link to={menu?.link}
                               key={i}
@@ -41,22 +47,76 @@ const Dashboard = () => {
                                 !open && 'opacity-0 translate-x-28 overflow-hidden'}`
                                 }>{menu.name}
                             </h2>
-                            <h2 className={`&{
-                                open && 'hidden'
-                            }
-                            absolute left-48 bg-white font-semibold whitespace-pre 
-                            text-gray-900 rounded-sm drop-shadow-lg px-0 py-0 w-0 overflow-hidden group-hover:px-2 group-hover:py-1
-                             group-hover:left-14  group-hover:duration-100
-                             group-hover:w-fit`}>
-                                {menu?.name}
-                            </h2>
                         </Link>
                     ))}
                 </div>
+                <div onClick={() => navigate('/Dashboard')} className='gap-5 text-red-600 ml-5 hover hover:text-gray-100 font-medium mt-52'>
+                    <p>KORA Transfert</p>
+                </div>
             </div>
-            <div className='ml-5 text-xl w-full h-full font-semibold bg-gray-100'>
-                <div className='fixed flex bg-gray-100 mt-0 shadow-md shadow-gray-600 h-[670px] w-[1385px]'>
-
+            <div className='ml-3 mr-3 text-xl w-full h-full font-semibold bg-gray-100'>
+                <div className='bg-gray-100 p-5 mt-0 mr-5 shadow-md shadow-gray-600 h-[670px] w-[1250px]'>
+                    <div className='space-x-36'>
+                        <label>Pays</label>
+                        <label>Ville</label>
+                        <label>Nom de l'Agence</label>
+                        <label>Adresse de l'Agence</label>
+                        <label>Contact de l'Agence</label>
+                    </div>
+                    <form>
+                        <div className='space-x-20 pt-2'>
+                            <select className='border-t-gray-500'>
+                                <option value='TOGO'>TOGO</option>
+                                <option value='GHANA'>GHANA</option>
+                                <option value='BENIN'>BENIN</option>
+                            </select>
+                            <select>
+                                <option value='Lome'>Lome</option>
+                                <option value='Tsevie'>Tsevie</option>
+                                <option value='Kpalime'>Kpalime</option>
+                                <option value='Kara'>Kara</option>
+                                <option value='Dapaong'>Dapaong</option>
+                                <option value='Cotonou'>Cotonou</option>
+                                <option value='Accra'>Accra</option>
+                            </select>
+                            <input className='text-blue-700 font-medium' type='text' name=''/>
+                            <input className='text-blue-700 font-medium' type='text' name=''/>
+                            <input className='text-blue-700 font-medium' type='text' name=''/>
+                        </div>
+                        <div className='space-x-48 pt-10'>
+                            <label>Email de l'Agence</label>
+                            <label>Devise de l'Agence</label>
+                            <label className=''>Solde Initial</label>
+                            <label>Action</label>
+                        </div>
+                        <div className='pt-2'>
+                            <input type='email' className='text-blue-700 font-medium w-48 mr-40'/>
+                            <select  className='mr-72 ml-2'>
+                                <option>FCFA</option>
+                                <option>CEDI</option>
+                                <option>NAIRA</option>
+                            </select>
+                            <input type='number' className='mr-32 w-40 text-blue-700 font-medium'/>
+                            <button type='submit' className='h-10 w-44 shadow-xl rounded-md shadow-green-500 hover:bg-green-900 duration-200 text-white bg-green-700 '>
+                                    Enregistrer
+                            </button>
+                        </div>
+                    </form>
+                    <div className='bg-gray-200 p-5 mt-10 mr-5 shadow-md shadow-gray-600 h-[400px] w-[1200px]'>
+                        <p className='text-orange-500 mb-6'>LISTE DES AGENCES</p>
+                        <table className='border-b-2'>
+                            <tr className='bg-gray-300'>
+                                <td className='pr-24'>N*</td>
+                                <td className='pr-24'>AGENCE</td>
+                                <td className='pr-24'>PAYS</td>
+                                <td className='pr-24'>VILLE</td>
+                                <td className='pr-20'>ADRESSE</td>
+                                <td className='pr-20'>CONTACT</td>
+                                <td className='pr-20'>EMAIL</td>
+                                <td>ACTION</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>

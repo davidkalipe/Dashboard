@@ -79,11 +79,11 @@ import ARG from '../assets/argent.jpg'
         var navigate = useNavigate()
         return (
             <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
-                <div className='hidden sm:block'>
-                    <img className='w-full h-full object-cover' src={ARG} alt=''/>
+                <div className='hidden sm:block '>
+                    <img className='w-full h-full object-cover ' src={ARG} alt=''/>
                 </div>
                 <div className='bg-gray-100  flex flex-col justify-center'>
-                    <p className='font-bold text-3xl text-center mb-10 text-green-900'>Web Transfert</p>
+                    <p className='font-bold text-3xl text-center mb-10 text-green-900'>KORA Transfert</p>
                     <div className='shadow-md shadow-[#515252] mb-10 max-w-[400px] w-full mx-auto bg-white p-4'>
                         <p className='text-3xl font-bold text-center py-6'>Enregistrez-vous</p>
                         <div className='flex flex-col py-2'>
