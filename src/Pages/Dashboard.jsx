@@ -1,10 +1,11 @@
 import React,{useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import { HiMenuAlt3 } from "react-icons/hi";
+import {HiMenuAlt3, HiOutlineLogout} from "react-icons/hi";
 import { BiSolidDashboard } from "react-icons/bi";
 import { IoMdSettings } from "react-icons/io";
-import { AiOutlineCheckCircle, AiOutlineStop, AiOutlineTransaction, AiTwotoneShop } from "react-icons/ai";
+import {AiOutlineTransaction, AiTwotoneShop } from "react-icons/ai";
 import User from '../assets/user.png'
+import {MdDelete} from "react-icons/md";
 
 const Dashboard = () => {
     var navigate  = useNavigate();
@@ -13,10 +14,28 @@ const Dashboard = () => {
         { name: 'Configuration', link: '/', icon: IoMdSettings },
         { name: 'Agences', link: '/Dashboard', icon: AiTwotoneShop, margin:true},
         { name: 'Transactions', link: '/', icon: AiOutlineTransaction },
-        { name: 'Sanctions', link: '/', icon: AiOutlineStop , margin:true},
-        { name: 'validation', link: '/', icon: AiOutlineCheckCircle }
+        {name: 'Déconnexion', link: '/SignIn', icon: HiOutlineLogout}
     ];
     const [open, setOpen] = useState(true);
+    const data = [
+        {id:1, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:2, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:3, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:4, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:5, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:6, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:7, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:8, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:9, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:10, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:11, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:12, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:13, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:14, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:15, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+        {id:16, agence:'Agoenyive2', pays: 'Togo', ville: 'Lomé', adresse: 'Agoè-nyivé', contact: '0022870554812', email: 'agence@kora.com'},
+
+    ]
 
     return (
         <section className='flex gap-6'>
@@ -25,10 +44,10 @@ const Dashboard = () => {
             } duration-700 text-gray-100`}>
 
                 <div className='bg-gray-900 flex '>
-                    <div className='justify-center items-center pr-5 pl-10 py-8'>
+                    <div className='justify-center items-center pr-3 pl-10 py-8'>
                         <link />
                         <img src={User} className='cursor-pointer w-20 ml-8'/>
-                        <p className='font-medium items-center ml-12 pt-2'>Admin</p>
+                        <p className='font-medium items-center ml-5 pt-2'>Administrateur</p>
                     </div>
                     <HiMenuAlt3 size={26} className='ml-8 justify-end items-end'/>
                 </div>
@@ -50,12 +69,12 @@ const Dashboard = () => {
                         </Link>
                     ))}
                 </div>
-                <div onClick={() => navigate('/Dashboard')} className='gap-5 text-red-600 ml-5 hover hover:text-gray-100 font-medium mt-52'>
+                <div onClick={() => navigate('/Dashboard')} className='gap-5 text-red-600 ml-5 hover hover:text-gray-100 font-medium mt-60'>
                     <p>KORA Transfert</p>
                 </div>
             </div>
-            <div className='ml-3 mr-3 text-xl w-full h-full font-semibold bg-gray-100'>
-                <div className='bg-gray-100 p-5 mt-0 mr-5 shadow-md shadow-gray-600 h-[670px] w-[1250px]'>
+            <div className='ml-2 mr-3 text-xl w-full h-full font-semibold bg-gray-100'>
+                <div className='bg-gray-100 p-4 mt-0 mr-3 shadow-md shadow-gray-600 h-[750px] w-[1240px]'>
                     <div className='space-x-36'>
                         <label>Pays</label>
                         <label>Ville</label>
@@ -102,19 +121,35 @@ const Dashboard = () => {
                             </button>
                         </div>
                     </form>
-                    <div className='bg-gray-200 p-5 mt-10 mr-5 shadow-md shadow-gray-600 h-[400px] w-[1200px]'>
-                        <p className='text-orange-500 mb-6'>LISTE DES AGENCES</p>
-                        <table className='border-b-2'>
-                            <tr className='bg-gray-300'>
-                                <td className='pr-24'>N*</td>
-                                <td className='pr-24'>AGENCE</td>
-                                <td className='pr-24'>PAYS</td>
-                                <td className='pr-24'>VILLE</td>
-                                <td className='pr-20'>ADRESSE</td>
-                                <td className='pr-20'>CONTACT</td>
-                                <td className='pr-20'>EMAIL</td>
-                                <td>ACTION</td>
-                            </tr>
+                    <div className='bg-gray-200 p-5 mt-10 mr-5 rounded-2xl  shadow-md shadow-gray-600 h-[490px] overflow-y-auto w-[1215px]'>
+                        <p className='text-orange-500 mb-8'>LISTE DES AGENCES</p>
+                        <table className='font-thin text-lg border border-slate-100 w-[1170px] max-h-[300px]'>
+                            <thead>
+                                <tr className='bg-gray-400'>
+                                    <th>N*</th>
+                                    <th>AGENCE</th>
+                                    <th>PAYS</th>
+                                    <th>VILLE</th>
+                                    <th>ADRESSE</th>
+                                    <th>CONTACT</th>
+                                    <th>EMAIL</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody className='bg-gray-300'>
+                                {data.map((item) =>(
+                                    <tr key={item.id}>
+                                        <td className='text-center'>{item.id}</td>
+                                        <td className='text-center'>{item.agence}</td>
+                                        <td className='text-center'>{item.pays}</td>
+                                        <td className='text-center'>{item.ville}</td>
+                                        <td className='text-center'>{item.adresse}</td>
+                                        <td className='text-center'>{item.contact}</td>
+                                        <td className='text-center'>{item.email}</td>
+                                        <td className='text-center'><button type='submit' className='bg-red-700 rounded-sm p-2 text-white'><MdDelete/></button></td>
+                                    </tr>
+                                ))}
+                            </tbody>
                         </table>
                     </div>
                 </div>
