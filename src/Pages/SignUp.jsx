@@ -1,81 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from "axios";
 import {useNavigate} from 'react-router-dom'
 import ARG from '../assets/argent.jpg'
 
-    /*constructor() {
-        super()
-        this.state = {
-            Username: '',
-            Email: '',
-            Password: '',
-            ConfirmPassword: '',
-            UsernameFlag: false,
-            EmailFlag: false,
-            PasswordFlag: false,
-            ConfirmPasswordFlag: false,
 
+    function SignUp () {
+        const [username, setUsername] = useState('');
+        const [tel, setTel] = useState('');
+        const [password, setPassword] = useState('');
+        // const [confirmpassword, setConfirmpassword] = useState('');
+
+        const handleUsernameChange = (value) =>{
+            setUsername(value);
         }
-    }
-
-    handleValues = e => {
-        const {name, value} = e.target
-        this.setState(
-            {[name]: value},
-            console.log('name:', name, 'value:', value),
-        );
-    }
-
-    CheckValidity() {
-        console.log('loading...')
-        this.setState({
-            UsernameFlag: false,
-            EmailFlag: false,
-            PasswordFlag: false,
-            ConfirmPasswordFlag: false
-        })
-
-        if (this.state.Username === '') {
-            this.setState({UsernameFlag: true})
+        const handleTelChange = (value) =>{
+            setTel(value);
         }
-        if (this.state.Email === '') {
-            this.setState({EmailFlag: true})
+        const handlePasswordChange = (value) =>{
+            setPassword(value);
         }
-        if (this.state.Password === '') {
-            this.setState({PasswordFlag: true})
-        }
-        if (this.state.ConfirmPassword === '') {
-            this.setState({ConfirmPasswordFlag: true})
-        }
-    }*/
-
-    /*handleSubmit = (e) => {
-        this.CheckValidity()
-        if (
-            this.state.Username != '' &&
-            this.state.Email != '' &&
-            this.state.Password != '' &&
-            this.state.ConfirmPassword != ''
-        ) {
-            console.log('Acceptable')
-            let data = {
-                username: this.state.Username,
-                email: this.state.Email,
-                password: this.state.Password,
-                ConfirmPassword: this.state.ConfirmPassword
-            }
-
-            authService
-                .SignUp(data).then((data)=>{
-                console.log('data: ',data)
-            }).catch((error) =>{
-                console.log('Error : ',error)
+        // const handleConfirmpasswordChange = (value) =>{
+        //     setConfirmpassword(value);
+        // }
+        const handleSave = () => {
+            const data ={
+                Username : username,
+                Tel : tel,
+                Password : password,
+                // ConfirmPassword : confirmpassword
+            };
+            const url = 'http://localhost:5099/api/Client/Enregistrer';
+            axios.post(url,data)
+                .then((response) =>{
+                    alert("Enregistrement avec succes ☺");
+                }).catch((error) =>{
+                    alert(error);
             })
-        } else {
-            console.log('Not acceptable')
         }
-    }*/
 
-    const SignUp = () => {
         var navigate = useNavigate()
         return (
             <div className='grid grid-cols-1 sm:grid-cols-2 h-screen w-full'>
@@ -89,24 +51,23 @@ import ARG from '../assets/argent.jpg'
                         <p className='text-3xl font-bold text-center py-6'>Enregistrez-vous</p>
                         <div className='flex flex-col py-2'>
                             <label>Username</label>
-                            <input name='Username' className='border p-2' type='text'/>
+                            <input onChange={(e) => handleUsernameChange(e.target.value)} className='border p-2' type='text'/>
                         </div>
                         <div className='flex flex-col py-2'>
-                            <label>Email</label>
-                            <input name='Email' className='border p-2' type='email' />
+                            <label>Téléphone</label>
+                            <input onChange={(e) => handleTelChange(e.target.value)} className='border p-2' type='number' />
                         </div>
                         <div className='flex flex-col py-2'>
                             <label>Password</label>
-                            <input name='Password' className='border p-2' type='password'/>
+                            <input onChange={(e) => handlePasswordChange(e.target.value)} className='border p-2' type='password'/>
                         </div>
-                        <div className='flex flex-col py-2'>
-                            <label>Confirm Password</label>
-                            <input name='ConfirmPassword' className='border p-2' type='password' />
-                        </div>
+                        {/*<div className='flex flex-col py-2'>*/}
+                        {/*    <label>Confirm Password</label>*/}
+                        {/*    <input onChange={(e) => handleConfirmpasswordChange(e.target.value)} className='border p-2' type='password' />*/}
+                        {/*</div>*/}
                         <button
-                            type='button'
                             className='border w-full my-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white'
-                            onClick="">
+                            onClick={() => handleSave()}>
                             M'enregistrer
                         </button>
                         <div className='flex justify-between'>
